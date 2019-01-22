@@ -1,0 +1,25 @@
+{
+  "name": "system-load",
+  "version": "0.0.1",
+  "description": "test task for Etersoft",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "^4.0.0",
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.3.1",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "gulp-babel": "^8.0.0",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-uglify-es": "^1.0.4"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AstR0x/system-load.git"
+  },
+  "author": "AstR0x",
+  "license": "MIT"
+}
