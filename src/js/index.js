@@ -1,13 +1,12 @@
-var cpuCtx = document.getElementById('cpuChart').getContext('2d');
-var memoryCtx = document.getElementById('memoryChart').getContext('2d');
-var loadAverageCtx = document.getElementById('loadAverageChart').getContext('2d');
-let time = performance.now();
-var cpuData = [];
-var memoryData = [];
-var timeData = [];
-var oneMinute = [];
-var fiveMinutes = [];
-var fifteenMinutes = [];
+const cpuCtx = document.getElementById('cpuChart').getContext('2d');
+const memoryCtx = document.getElementById('memoryChart').getContext('2d');
+const loadAverageCtx = document.getElementById('loadAverageChart').getContext('2d');
+const cpuData = [];
+const memoryData = [];
+const timeData = [];
+const oneMinuteData = [];
+const fiveMinutesData = [];
+const fifteenMinutesData = [];
 
 var cpuChart = new Chart(cpuCtx, {
   type: 'line',
@@ -21,7 +20,6 @@ var cpuChart = new Chart(cpuCtx, {
     }]
   },
 
-  // Configuration options go here
   options: {
     scales: {
       yAxes: [{
@@ -32,8 +30,8 @@ var cpuChart = new Chart(cpuCtx, {
         },
         scaleLabel: {
           display: true,
-          labelString: "Percentages",
-          fontColor: "black"
+          labelString: "PERCENTAGES",
+          fontColor: "#c0c0c0"
         }
       }]
     }
@@ -57,13 +55,13 @@ var memoryChart = new Chart(memoryCtx, {
       yAxes: [{
         ticks: {
           min: 0,
-          max: 500,
-          stepSize: 100
+          max: getData()['TotalMemory'] / 1024,
+          stepSize: getData()['TotalMemory'] / 4096
         },
         scaleLabel: {
           display: true,
-          labelString: "Megabytes",
-          fontColor: "black"
+          labelString: "MEGABYTES",
+          fontColor: "#c0c0c0"
         }
       }]
     }
@@ -78,23 +76,22 @@ var loadAverageChart = new Chart(loadAverageCtx, {
       label: "1 minute",
       backgroundColor: 'rgba(0, 0, 0, 0)',
       borderColor: 'rgb(255, 99, 132)',
-      data: oneMinute,
+      data: oneMinuteData,
     },
       {
         label: "5 minutes",
         backgroundColor: 'rgba(0, 0, 0, 0)',
         borderColor: 'rgb(65, 99, 222)',
-        data: fiveMinutes,
+        data: fiveMinutesData,
       },
       {
         label: "15 minutes",
         backgroundColor: 'rgba(0, 0, 0, 0)',
         borderColor: 'rgb(145, 44, 132)',
-        data: fifteenMinutes,
+        data: fifteenMinutesData,
       },]
   },
 
-  // Configuration options go here
   options: {
     scales: {
       yAxes: [{
@@ -107,6 +104,25 @@ var loadAverageChart = new Chart(loadAverageCtx, {
   }
 });
 
+function renderCharts(data) {
+  if (timeData.length >= 10) {
+    timeData.shift();
+    cpuData.shift();
+    memoryData.shift();
+    oneMinuteData.shift();
+    fiveMinutesData.shift();
+    fifteenMinutesData.shift();
+  }
+  cpuData.push(data['CPU'] / 1);
+  memoryData.push((data['FreeMemory'] / 1024).toFixed(2));
+  timeData.push(new Date().toLocaleTimeString());
+  oneMinuteData.push(data['oneMinute']);
+  fiveMinutesData.push(data['fiveMinutes']);
+  fifteenMinutesData.push(data['fifteenMinutes']);
+  cpuChart.update();
+  memoryChart.update();
+  loadAverageChart.update();
+}
 
 function App(props) {
   return (
@@ -133,29 +149,23 @@ function App(props) {
   );
 }
 
+function getData() {
+  let xhr = new XMLHttpRequest();
+  xhr.open('GET', 'core/data.php', false);
+  xhr.send();
+  if (xhr.status != 200) {
+    console.log(xhr.status);
+  } else {
+    var Data = JSON.parse(xhr.responseText);
+  }
+  return Data;
+}
+
 setInterval(function () {
-  $.get('core/data.php', function (data) {
-    data = JSON.parse(data);
-    if (timeData.length >= 10) {
-      timeData.shift();
-      cpuData.shift();
-      memoryData.shift();
-      oneMinute.shift();
-      fiveMinutes.shift();
-      fifteenMinutes.shift();
-    }
-    cpuData.push(data['CPU'] / 1);
-    memoryData.push((data['FreeMemory'] / 1024).toFixed(2));
-    timeData.push(new Date().toLocaleTimeString());
-    oneMinute.push(data['oneMinute']);
-    fiveMinutes.push(data['fiveMinutes']);
-    fifteenMinutes.push(data['fifteenMinutes']);
-    cpuChart.update();
-    memoryChart.update();
-    loadAverageChart.update();
-    ReactDOM.render(<App data={data}/>, document.getElementById('root'));
-  });
+    renderCharts(getData());
+    ReactDOM.render(<App data={getData()}/>, document.getElementById('root'));
 }, 2000);
+
 
 
 
