@@ -1,4 +1,5 @@
-setInterval(function () {
+setInterval(function ren() {
   renderCharts(getData());
-  ReactDOM.render(<App data={getData()}/>, document.getElementById('root'));
-}, 2000);
+  ReactDOM.render(<App/>, document.getElementById('root'));
+  return ren;
+}(), 2000);

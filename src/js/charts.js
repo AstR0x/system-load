@@ -8,7 +8,7 @@ const oneMinuteData = [];
 const fiveMinutesData = [];
 const fifteenMinutesData = [];
 
-var cpuChart = new Chart(cpuCtx, {
+const cpuChart = new Chart(cpuCtx, {
   type: 'line',
   data: {
     labels: timeData,
@@ -38,7 +38,7 @@ var cpuChart = new Chart(cpuCtx, {
   }
 });
 
-var memoryChart = new Chart(memoryCtx, {
+const memoryChart = new Chart(memoryCtx, {
   type: 'line',
   data: {
     labels: timeData,
@@ -68,7 +68,7 @@ var memoryChart = new Chart(memoryCtx, {
   }
 });
 
-var loadAverageChart = new Chart(loadAverageCtx, {
+const loadAverageChart = new Chart(loadAverageCtx, {
   type: 'line',
   data: {
     labels: timeData,
@@ -116,7 +116,6 @@ function renderCharts(data) {
   cpuData.push(data['CPU'] / 1);
   memoryData.push((data['FreeMemory'] / 1024).toFixed(2));
   timeData.push(new Date().toLocaleTimeString());
-  console.log(new Date().toLocaleTimeString());
   oneMinuteData.push(data['oneMinute']);
   fiveMinutesData.push(data['fiveMinutes']);
   fifteenMinutesData.push(data['fifteenMinutes']);
@@ -125,16 +124,5 @@ function renderCharts(data) {
   loadAverageChart.update();
 }
 
-function getData() {
-  let xhr = new XMLHttpRequest();
-  xhr.open('GET', 'core/data.php', false);
-  xhr.send();
-  if (xhr.status != 200) {
-    console.log(xhr.status);
-  } else {
-    var Data = JSON.parse(xhr.responseText);
-  }
-  return Data;
-}
 
 

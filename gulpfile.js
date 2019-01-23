@@ -2,11 +2,13 @@ const gulp = require('gulp');
 const babel = require('gulp-babel');
 const cssmin = require('gulp-minify-css');
 const uglify = require('gulp-uglify-es').default;
-var concat = require('gulp-concat');
+const rename = require('gulp-rename');
+const concat = require('gulp-concat');
 
 gulp.task('css-min', function () {
   return gulp.src('src/css/**/*.css')
       .pipe(cssmin())
+      .pipe(rename('main.css'))
       .pipe(gulp.dest('public/css/'))
 });
 
