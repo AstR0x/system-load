@@ -8,9 +8,9 @@ $average3 =  shell_exec("uptime | awk '{ print $12 }' ");
 $arr = array('CPU' => trim($cpu),
               'TotalMemory' => trim($total_mem),
               'FreeMemory' => trim($free_mem),
-              "1minute" => substr(trim($average1), 0, -1),
-              "5minute" => substr(trim($average2), 0, -1),
-              "15minute" => substr(trim($average3), 0, -1));
+              "oneMinute" => substr(trim($average1), 0, -1),
+              "fiveMinutes" => substr(trim($average2), 0, -1),
+              "fifteenMinutes" => substr(trim($average3), 0, -1));
 
 exit (json_encode($arr));
 

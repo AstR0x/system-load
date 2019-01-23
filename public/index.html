@@ -10,9 +10,16 @@
 <body>
   <div id="root">
   </div>
-  <div class='canvas-block'>
-    <canvas id="cpuChart"></canvas>
-    <canvas id="memoryChart"></canvas>
+  <div class="main-block">
+    <div class='canvasCpu-block'>
+      <canvas id="cpuChart" height="300vh" width="600vw"></canvas>
+    </div>
+    <div class='canvasMemory-block'>
+      <canvas id="memoryChart" height="300vh" width="600vw"></canvas>
+    </div>
+  </div>
+  <div class="loadAver">
+    <canvas id="loadAverageChart" height="300vh" width="600vw"></canvas>
   </div>
   <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
