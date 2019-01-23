@@ -1,4 +1,5 @@
 table {
+  width: 50%;
   font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
   font-size: 14px;
   border-collapse: collapse;
@@ -17,6 +18,9 @@ th, td {
 td {
   background: #D8E6F3;
 }
-th:first-child, td:first-child {
-  text-align: left;
+
+
+.canvas-block {
+  width: 500px;
+  height: 500px;
 }

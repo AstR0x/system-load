@@ -3,7 +3,9 @@
   "version": "0.0.1",
   "description": "test task for Etersoft",
   "main": "index.js",
-  "dependencies": {},
+  "dependencies": {
+    "chart.js": "^2.7.3"
+  },
   "devDependencies": {
     "gulp": "^4.0.0",
     "@babel/core": "^7.2.2",
