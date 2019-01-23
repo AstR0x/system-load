@@ -4,26 +4,29 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>itersoft</title>
+  <title>system-load</title>
   <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
-  <div id="root">
-  </div>
-  <div class="main-block">
+<div id="root">
+</div>
+<div class="canvas-block">
+  <div class="cpu-and-memory-charts">
     <div class='canvasCpu-block'>
-      <canvas id="cpuChart" height="300vh" width="600vw"></canvas>
+      <canvas id="cpuChart"></canvas>
     </div>
     <div class='canvasMemory-block'>
-      <canvas id="memoryChart" height="300vh" width="600vw"></canvas>
+      <canvas id="memoryChart"></canvas>
     </div>
   </div>
   <div class="loadAver">
-    <canvas id="loadAverageChart" height="300vh" width="600vw"></canvas>
+    <canvas id="loadAverageChart"></canvas>
   </div>
-  <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
-  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
-  <script src="js/index.js"></script>
+</div>
+
+<script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>

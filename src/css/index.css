@@ -5,16 +5,19 @@ table {
   border-collapse: collapse;
   text-align: center;
 }
+
 th, td:first-child {
   background: #AFCDE7;
   color: white;
   padding: 10px 20px;
 }
+
 th, td {
   border-style: solid;
   border-width: 0 1px 1px 0;
   border-color: white;
 }
+
 td {
   background: #D8E6F3;
 }
@@ -24,14 +27,52 @@ td {
   width: 500px;
 }
 
-.main-block {
+.canvas-block {
   margin-top: 100px;
+}
+
+.cpu-and-memory-charts {
   display: flex;
   justify-content: space-around;
 }
 
 .loadAver {
   margin: 100px auto;
-  height:  400px;
-  width: 1000px;
+  height: 100%;
+  width: 50%;
+}
+
+@media screen and (max-width: 640px) {
+  table {
+    font-size: 11px;
+  }
+  
+  th, td:first-child {
+    padding: 4px 4px;
+  }
+  
+  .canvas-block {
+    margin-top: 30px;
+  }
+  
+  .cpu-and-memory-charts {
+    display: block;
+  }
+  
+  .canvasMemory-block {
+    margin-top: 10px;
+    height: 150px;
+    width: 300px;
+  }
+  
+  .canvasCpu-block {
+    height: 150px;
+    width: 300px;
+  }
+  
+  .loadAver {
+    margin-top: 20px;
+    height: 300px;
+    width: 300px;
+  }
 }

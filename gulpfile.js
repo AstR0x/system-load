@@ -2,6 +2,7 @@ const gulp = require('gulp');
 const babel = require('gulp-babel');
 const cssmin = require('gulp-minify-css');
 const uglify = require('gulp-uglify-es').default;
+var concat = require('gulp-concat');
 
 gulp.task('css-min', function () {
   return gulp.src('src/css/**/*.css')
@@ -12,7 +13,9 @@ gulp.task('css-min', function () {
 gulp.task('js-min', function () {
   return gulp.src('src/js/**/*.js')
       .pipe(babel({
-          plugins: ['transform-react-jsx']}))
+        plugins: ['transform-react-jsx']
+      }))
+      .pipe(concat('main.js'))
       .pipe(uglify())
       .pipe(gulp.dest('public/js/'));
 });
