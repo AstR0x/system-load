@@ -5,7 +5,6 @@ function getData() {
   if (xhr.status != 200) {
     console.log(xhr.status);
   } else {
-    var Data = JSON.parse(xhr.responseText);
+    return (JSON.parse(xhr.responseText));
   }
-  return Data;
 }
