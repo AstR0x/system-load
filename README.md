@@ -1,9 +1,9 @@
 # system-load
 
- the path to the folder.A web application that displays the current Linux system load in real time.
-                                                                                                                      - percentage of processor usage;
-                                                                                                                      - the total amount of RAM and the amount of free RAM;
-                                                                                                                      - average load.
-                                                                                                                      
-                                                                                                                      ## Deployment
-                                                                                                                      The shared folder from the repository is hosted on the server. In the server settings, specify
+A web application that displays the current load on a Linux system in real time.
+- CPU load;
+- total amount of RAM and amount of free RAM;
+- load average.
+
+## Deployment
+The public folder from the repository is placed on the server. In the server settings, specify the path to the folder.
