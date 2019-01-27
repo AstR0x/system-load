@@ -15,8 +15,8 @@ if(trim(shell_exec("uptime |  awk '{ print $10 }' ")) == 'average:') {
 
 header('Access-Control-Allow-Origin: *');
 $arr = array('CPU' => ((int)trim($cpu) > 100 ? 100 : trim($cpu)),
-    'TotalMemory' => trim($total_mem),
-    'FreeMemory' => trim($free_mem),
+    'TotalMemory' => trim($total_mem) / 1024,
+    'FreeMemory' => trim($free_mem) / 1024,
     "oneMinute" => substr(trim($average1), 0, -1),
     "fiveMinutes" => substr(trim($average2), 0, -1),
     "fifteenMinutes" => substr(trim($average3), 0, -1));

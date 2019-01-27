@@ -1,4 +1,6 @@
-#.idea folder
-.idea/
-#node_modules folder
-node_modules
+# .idea folder
+/.idea
+
+# dependencies
+/node_modules
+

@@ -1,25 +1,24 @@
-table {
-  width: 100%;
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background: #252F48;
+}
+
+.system-load-table {
   font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
   font-size: 14px;
-  border-collapse: collapse;
+  width: 100%;
   text-align: center;
+  border-collapse: collapse;
+  background: #252F48;
 }
-
-th, td:first-child {
-  background: #AFCDE7;
-  color: white;
-  padding: 10px 20px;
-}
-
-th, td {
-  border-style: solid;
-  border-width: 0 1px 1px 0;
-  border-color: white;
-}
-
-td {
-  background: #D8E6F3;
+.system-load-table th {
+  color: #EDB749;
+  border-bottom: 1px solid #37B5A5;
+  padding: 12px 17px;
 }
 
 .canvasCpu-block, .canvasMemory-block {
@@ -42,13 +41,13 @@ td {
   width: 50%;
 }
 
-@media screen and (max-width: 640px) {
-  table {
+@media screen and (max-width: 414px) {
+ .system-load-table {
     font-size: 11px;
   }
   
-  th, td:first-child {
-    padding: 4px 4px;
+  .system-load-table th {
+    padding: 6px 6px;
   }
   
   .canvas-block {
