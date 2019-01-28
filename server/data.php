@@ -19,7 +19,7 @@ $arr = array('CPU' => ((int)trim($cpu) > 100 ? 100 : trim($cpu)),
     'FreeMemory' => trim($free_mem) / 1024,
     "oneMinute" => substr(trim($average1), 0, -1),
     "fiveMinutes" => substr(trim($average2), 0, -1),
-    "fifteenMinutes" => substr(trim($average3), 0, -1));
+    "fifteenMinutes" => trim($average3));
 
 exit (json_encode($arr));
 
