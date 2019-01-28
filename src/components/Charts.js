@@ -1,5 +1,6 @@
 import React from 'react'
 import Chart from 'chart.js'
+import URL from '../address'
 
 class Charts extends React.Component {
   constructor(props) {
@@ -190,7 +191,7 @@ class Charts extends React.Component {
 
   getData() {
     let xhr = new XMLHttpRequest();
-    xhr.open('GET', 'http://77.246.159.121/core/data.php', false);
+    xhr.open('GET', URL, false);
     xhr.send();
     if (xhr.status != 200) {
       console.log(xhr.status);
@@ -220,9 +221,7 @@ class Charts extends React.Component {
       this.loadAverageChart.update();
       this.cpuChart.update();
       this.memoryChart.update();
-
-
-    }, 2000)
+    }, 3000)
   }
 
   render() {

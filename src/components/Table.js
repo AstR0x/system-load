@@ -1,4 +1,5 @@
 import React from 'react';
+import URL from '../address'
 
 class Table extends React.Component {
   constructor(props) {
@@ -33,7 +34,7 @@ class Table extends React.Component {
 
   getData() {
     let xhr = new XMLHttpRequest();
-    xhr.open('GET', 'http://77.246.159.121/core/data.php', false);
+    xhr.open('GET', URL, false);
     xhr.send();
     if (xhr.status != 200) {
       console.log(xhr.status);
