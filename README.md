@@ -1,12 +1,19 @@
 # system-load
 
-A web application that displays the current load on a Linux system in real time.
-- CPU load;
-- total amount of RAM and amount of free RAM;
+# system-load
+
+Веб-приложение, которое  отображает текущую нагрузку на Linux-систему в реальном времени, а именно:
+- процент загрузки CPU;
+- общее количество RAM и количество доступной RAM;
 - load average.
 
-## Deployment
-The public folder from the repository is placed on the server. In the server settings, specify the path to the folder.
+## Развёртывание
+1. Скачать репозиторий.
+2. Файл data.php из папки server разместить на сервере.
+3. В файле src/address.js в переменную 'URL' поместить адрес до файла data.php (Например http://77.246.159.121/server/data.php)
+4. Открыть консоль в репозитории и прописать 'npm i' для установки модулей, а затем 'npm start' для запуска локального сервера.
+5. Перейти в браузере по адресу http://localhost:3000/
 
-## Screenshot
+
+## Скриншот
 ![screenshot](https://github.com/AstR0x/system-load/blob/master/img/screenshot.png)
