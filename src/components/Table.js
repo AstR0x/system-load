@@ -3,7 +3,7 @@ import URL from '../address'
 
 class Table extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     const data = this.getData();
 

@@ -1,4 +1,4 @@
-# system-load
+﻿# system-load
 
 Веб-приложение, которое  отображает текущую нагрузку на Linux-систему в реальном времени, а именно:
 - процент загрузки CPU;
@@ -14,4 +14,4 @@
 
 
 ## Скриншот
-![screenshot](https://github.com/AstR0x/system-load/blob/master/img/screenshot.png)
+![screenshot](https://github.com/AstR0x/astr0x.github.io/blob/master/screenshots/system-load.png)
