@@ -1,25 +1,16 @@
-import React from 'react'
-import Chart from 'chart.js'
-import URL from '../address'
+import React, {Component} from 'react'
+import Chart from '../../../node_modules/chart.js/src/chart'
 
-class Charts extends React.Component {
-  constructor(props) {
-    super(props);
+class Charts extends Component {
 
-    const data = this.getData();
-
-    this.state = {
-      cpuData: [data['CPU']],
-      memoryData: [data['FreeMemory']],
+    state = {
+      cpuData: [this.props.data.CPU],
+      memoryData: [this.props.data.FreeMemory],
       timeData: [new Date().toLocaleTimeString()],
-      oneMinuteData: [data['oneMinute']],
-      fiveMinutesData: [data['fiveMinutes']],
-      fifteenMinutesData: [data['fifteenMinutes']],
-      data: data
+      oneMinuteData: [this.props.data.oneMinute],
+      fiveMinutesData: [this.props.data.fiveMinutes],
+      fifteenMinutesData: [this.props.data.fifteenMinutes],
     };
-
-    this.changeCharts();
-  }
 
   componentDidMount() {
     const cpuCtx = document.getElementById('cpuChart').getContext('2d');
@@ -117,8 +108,8 @@ class Charts extends React.Component {
               fontColor: "white",
               fontSize: 12,
               min: 0,
-              max: this.state.data['TotalMemory'],
-              stepSize: this.state.data['TotalMemory'] / 4,
+              max: this.props.data.TotalMemory,
+              stepSize: this.props.data.TotalMemory / 4,
             },
             scaleLabel: {
               display: true,
@@ -189,39 +180,30 @@ class Charts extends React.Component {
     });
   }
 
-  getData() {
-    let xhr = new XMLHttpRequest();
-    xhr.open('GET', URL, false);
-    xhr.send();
-    if (xhr.status != 200) {
-      console.log(xhr.status);
-    } else {
-      return (JSON.parse(xhr.responseText));
-    }
+  shouldComponentUpdate(nextProps, nextState) {
+    this.changeCharts();
+    return false;
   }
 
   changeCharts() {
-    setInterval(() => {
-      this.data = this.getData();
-      if (this.state.timeData.length >= 10) {
-        this.state.timeData.shift();
-        this.state.cpuData.shift();
-        this.state.memoryData.shift();
-        this.state.oneMinuteData.shift();
-        this.state.fiveMinutesData.shift();
-        this.state.fifteenMinutesData.shift();
-      }
+    if (this.state.timeData.length >= 10) {
+      this.state.timeData.shift();
+      this.state.cpuData.shift();
+      this.state.memoryData.shift();
+      this.state.oneMinuteData.shift();
+      this.state.fiveMinutesData.shift();
+      this.state.fifteenMinutesData.shift();
+    }
 
-      this.state.cpuData.push(this.data['CPU'] / 1);
-      this.state.memoryData.push((this.data['FreeMemory']).toFixed(2));
-      this.state.timeData.push(new Date().toLocaleTimeString());
-      this.state.oneMinuteData.push(this.data['oneMinute']);
-      this.state.fiveMinutesData.push(this.data['fiveMinutes']);
-      this.state.fifteenMinutesData.push(this.data['fifteenMinutes']);
-      this.loadAverageChart.update();
-      this.cpuChart.update();
-      this.memoryChart.update();
-    }, 3000)
+    this.state.cpuData.push(this.props.data['CPU'] / 1);
+    this.state.memoryData.push((this.props.data['FreeMemory']).toFixed(2));
+    this.state.timeData.push(new Date().toLocaleTimeString());
+    this.state.oneMinuteData.push(this.props.data['oneMinute']);
+    this.state.fiveMinutesData.push(this.props.data['fiveMinutes']);
+    this.state.fifteenMinutesData.push(this.props.data['fifteenMinutes']);
+    this.loadAverageChart.update();
+    this.cpuChart.update();
+    this.memoryChart.update();
   }
 
   render() {
